@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html layout:decorator="layouts/common" xmlns:layout="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Content page</title>
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <h2 class="display-2 my-3">My courses</h2>
+            <p><a class="btn btn-primary" href="#" th:href="@{/courses/new}">New course</a></p>
+            <div class="list-group">
+
+                <a th:each="course : ${courses}" th:href="@{/courses/{id}(id=${course.id})}" class="list-group-item list-group-item-action list-group-item-danger">
+                    <div class="d-flex w-100 justify-content-between align-items-center">
+                        <h5 th:text="${course.title}" class="mb-1">Bad machine</h5>
+                    </div>
+                    <p th:text="${course.description}" class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+                    <p th:text="${course.credits}+' Credits'" class="mb-1"> Credits</p>
+                    <p th:text="${#temporals.format(course.created_at, 'dd-MM-yyyy')}" class="mb-1">2019.01.01.</p>
+                    <a class="btn btn-primary" href="#" role="button" th:text="${(course.published) ? 'UnPublish' : 'Publish'}" th:href="@{/courses/{id}/editStatusGet(id=${course.id})}">Publish</a>
+                    <br>
+                    <br>
+                </a>
+
+            </div>
+        </div>
+    </body>
+</html>

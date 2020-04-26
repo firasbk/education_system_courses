@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html layout:decorator="layouts/common" xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Content page</title>
+    </head>
+    <body>
+        <div layout:fragment="content">
+
+            <h2 class="display-2 my-3">Details</h2>
+            <dl class="row">
+
+                <dt class="col-sm-3">Title</dt>
+                <dd class="col-sm-9" th:text="${course.title}">Bad machine</dd>
+
+                <dt class="col-sm-3">Credits</dt>
+                <dd class="col-sm-9" th:text="${course.credits}">PC-9</dd>
+
+                <dt class="col-sm-3">Date</dt>
+                <dd class="col-sm-9" th:text="${#temporals.format(course.created_at, 'dd-MM-yyyy')}">2019.01.01.</dd>
+
+                <dt class="col-sm-3">Description</dt>
+                <dd class="col-sm-9" th:text="${course.description}">Some description</dd>
+
+                <dt class="col-sm-3">Published</dt>
+                <dd class="col-sm-9" th:text="${course.published}">published</dd>
+
+                <dt class="col-sm-3">User</dt>
+                <dd class="col-sm-9" th:text="${course.user.username}">test</dd>
+
+
+            </dl>
+
+            <p>
+                <a class="btn btn-primary" href="#" role="button" th:href="@{/courses/{id}/edit(id=${course.id})}">Edit</a>
+                <a class="btn btn-outline-danger" href="#" th:href="@{/courses/{id}/delete(id=${course.id})}" role="button">Delete</a>
+            </p>
+
+        </div>
+    </body>
+</html>
